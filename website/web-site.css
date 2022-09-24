@@ -16,9 +16,10 @@ img {
   width: 100%;
 }
 
-main #introduction {
+main #introduction, #history {
   padding: 20px;
   background-color: cadetblue;
+  color:aliceblue
 }
 
 main #description {
