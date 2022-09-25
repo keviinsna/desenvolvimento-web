@@ -30,6 +30,10 @@ img {
   width: 100%;
 }
 
+main img {
+  border-radius: 10px;
+}
+
 ul {
   margin-left: 15px;
   list-style-type: disc;
@@ -110,10 +114,6 @@ p {
   width: 80%;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-img {
-  border-radius: 10px;
 }
 
 #problems {
