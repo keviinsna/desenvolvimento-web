@@ -5,7 +5,6 @@
   margin: 0;
   border: 0;
   vertical-align: baseline;
-  list-style: none;
 }
 
 html {
@@ -34,6 +33,11 @@ img {
   width: 100%;
 }
 
+ul {
+  list-style-type: circle;
+  border: 1px;
+}
+
 main #introduction,
 #history {
   display: flex;
@@ -44,7 +48,8 @@ main #introduction,
   color: aliceblue;
 }
 
-main #description {
+main #description,
+#health {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +65,7 @@ main #description {
 }
 
 table {
-  width: 70%;
+  width: 80%;
   margin-left: 12px;
   margin-right: 12px;
   table-layout: fixed;
@@ -82,7 +87,18 @@ td {
 
 p {
   text-align: justify;
-  width: 70%;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#problems {
+  width: 80%;
+}
+
+#problems .row{
+  display: flex;
+  justify-content: space-between;
   margin-top: 10px;
   margin-bottom: 10px;
 }
