@@ -34,7 +34,9 @@ img {
 }
 
 ul {
-  list-style-type: circle;
+  margin-left: 15px;
+  list-style-type: disc;
+  color: white;
   border: 1px;
 }
 
