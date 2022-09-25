@@ -84,6 +84,10 @@ td {
   padding: 0.8rem;
 }
 
+h4 {
+  text-align: center;
+}
+
 p {
   text-align: justify;
   width: 80%;
@@ -91,13 +95,35 @@ p {
   margin-bottom: 10px;
 }
 
+img {
+  border-radius: 10px;
+}
+
 #problems {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 80%;
 }
 
 #problems .row {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  align-items: center;
+  gap: 15px;
+}
+
+#problems .row #eye-injuries,
+#dental-disease,
+#overheating,
+#respiratory-distress {
+  width: 50%;
+}
+
+#problems p {
+  width: 100%;
+}
+
+.row {
+  margin: 20px;
 }
