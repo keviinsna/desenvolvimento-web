@@ -12,22 +12,77 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: grey;
+  font-weight: bold;
+}
+
+a:hover {
+  color: black;
+  font-weight: bold;
+}
+
 img {
   width: 100%;
 }
 
-main #introduction, #history {
+main #introduction,
+#history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   background-color: cadetblue;
-  color:aliceblue
+  color: aliceblue;
 }
 
 main #description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   background-color: whitesmoke;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+table {
+  width: 70%;
+  margin-left: 12px;
+  margin-right: 12px;
+  table-layout: fixed;
+  border: 1px solid lightgray;
+  border-collapse: collapse;
+}
+
+th {
+  border-bottom: 2px solid lightgray;
+  padding: 0.8rem;
+  font-weight: bold;
+}
+
+td {
+  border-bottom: 0.5px solid gray;
+  text-align: center;
+  padding: 0.8rem;
+}
+
 p {
   text-align: justify;
-  padding: 12px;
+  width: 70%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
