@@ -107,6 +107,7 @@ divTrophies.setAttribute('id', 'trophies');
 const divPlayers = body.appendChild(document.createElement('div'));
 divPlayers.setAttribute('id', 'players');
 
+
 function createButton(id, text) {
   const buttonElement = document.createElement('button');
   buttonElement.setAttribute('type', 'button');
