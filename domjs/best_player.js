@@ -181,5 +181,4 @@ function showPlayers(quantityTrophies) {
   );
 
   playersFiltered.map((player) => createImgPlayer(player));
-  console.log(quantityTrophies, playersFiltered);
 }
