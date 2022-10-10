@@ -7,96 +7,112 @@ const players = [
     year: [1991],
     img: 'lothar-mattahus.jpg',
     quantity: 1,
+    country: 'germany.png',
   },
   {
     name: 'Marco van Basten',
     year: [1992],
     img: 'marco-van-basten.png',
     quantity: 1,
+    country: 'netherlands.png',
   },
   {
     name: 'Roberto Baggio',
     year: [1993],
     img: 'roberto-baggio.jpg',
     quantity: 1,
+    country: 'italy.png',
   },
   {
     name: 'Romário',
     year: [1994],
     img: 'romario.jpg',
     quantity: 1,
+    country: 'brazil.png',
   },
   {
     name: 'George Weah',
     year: [1995],
     img: 'george-weah.jpg',
     quantity: 1,
+    country: 'liberia.png',
   },
   {
     name: 'Ronaldo',
     year: [1996, 1997, 2002],
     img: 'ronaldo.jpg',
     quantity: 3,
+    country: 'brazil.png',
   },
   {
     name: 'Zinedine Zidane',
     year: [1998, 2000, 2003],
     img: 'zinedine-zidane.jpg',
     quantity: 3,
+    country: 'france.png',
   },
   {
     name: 'Rivaldo',
     year: [1999],
     img: 'rivaldo.jpg',
     quantity: 1,
+    country: 'brazil.png',
   },
   {
     name: 'Luís Figo',
     year: [2001],
     img: 'luis-figo.jpeg',
     quantity: 1,
+    country: 'portugal.png',
   },
   {
     name: 'Ronaldinho',
     year: [2004, 2005],
     img: 'ronaldinho.jpg',
     quantity: 2,
+    country: 'brazil.png',
   },
   {
     name: 'Fabio Cannavaro',
     year: [2006],
     img: 'fabio-cannavaro.jpg',
     quantity: 1,
+    country: 'italy.png',
   },
   {
     name: 'Kaká',
     year: [2007],
     img: 'kaka.jpg',
     quantity: 1,
+    country: 'brazil.png',
   },
   {
     name: 'Cristiano Ronaldo',
     year: [2008, 2013, 2014, 2016, 2017],
     img: 'cristiano-ronaldo.jpg',
     quantity: 5,
+    country: 'portugal.png',
   },
   {
     name: 'Lionel Messi',
     year: [2009, 2010, 2011, 2012, 2015, 2019],
     img: 'lionel-messi.jpg',
     quantity: 6,
+    country: 'argentina.png',
   },
   {
     name: 'Luka Modrić',
     year: [2018],
     img: 'luka-modric.jpg',
     quantity: 1,
+    country: 'croatia.png',
   },
   {
     name: 'Robert Lewandowski',
     year: [2020, 2021],
     img: 'robert-lewandowski.jpg',
     quantity: 2,
+    country: 'poland.png',
   },
 ];
 
@@ -115,28 +131,49 @@ document.head.appendChild(icon);
 //      Body
 // ---------------
 
+const divHeader = document.createElement('header');
+divHeader.style.cssText = `
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+`;
+
 const h1 = document.createElement('h1');
 h1.append("The Best FIFA Men's Player");
 
-document.body.appendChild(h1);
-
+const divCounter = document.createElement('div');
+divCounter.className = 'counter';
 const buttonMinus = createButton('button-minus', '-');
 const counter = createCounter('counter');
+counter.style.cssText = `
+  width: 30px;
+  text-align: center;
+`;
 const buttonPlus = createButton('button-plus', '+');
+appendChildren(divCounter, [buttonMinus, counter, buttonPlus]);
 
 const paragraph = document.createElement('p');
 paragraph.append(`Soccer player this quantity of fifa the best trophies:`);
+appendChildren(divHeader, [h1, divCounter, paragraph]);
+
+document.body.appendChild(divHeader);
 
 const divTrophies = document.body.appendChild(document.createElement('div'));
 divTrophies.setAttribute('id', 'trophies');
-
-document.body.appendChild(paragraph);
+divTrophies.style.cssText = `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const divPlayers = document.body.appendChild(document.createElement('div'));
 divPlayers.setAttribute('id', 'players');
-divPlayers.style.display = 'flex';
-divPlayers.style.flexWrap = 'wrap';
-divPlayers.style.justifyContent = 'space-evenly';
+divPlayers.style.cssText = `
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
 
 // ---------------
 //   Functions
@@ -147,7 +184,6 @@ function createButton(id, text) {
   buttonElement.setAttribute('type', 'button');
   buttonElement.setAttribute('id', id);
   buttonElement.append(text);
-  document.body.appendChild(buttonElement);
 
   return buttonElement;
 }
@@ -158,7 +194,6 @@ function createCounter(id) {
   counterElement.setAttribute('type', 'number');
   counterElement.setAttribute('value', '0');
   counterElement.readOnly = true;
-  document.body.appendChild(counterElement);
 
   return counterElement;
 }
@@ -187,9 +222,9 @@ function createImgPlayer(player) {
   figCaption.style.textAlign = 'center';
 
   const imgPlayer = document.createElement('img');
-  imgPlayer.setAttribute('src', `./imgs/${player.img}`);
-  imgPlayer.setAttribute('width', '300px');
-  imgPlayer.setAttribute('height', '300px');
+  imgPlayer.setAttribute('src', `./imgs/players/${player.img}`);
+  imgPlayer.setAttribute('width', '250px');
+  imgPlayer.setAttribute('height', '250px');
   imgPlayer.setAttribute('name', player.name);
   imgPlayer.setAttribute('alt', player.name);
   imgPlayer.style.borderRadius = '10%';
@@ -236,4 +271,8 @@ function hidePlayers(quantityTrophies) {
   );
 
   playersFiltered.map((player) => removeImg(player.name));
+}
+
+function appendChildren(parent, children) {
+  children.map((child) => parent.appendChild(child));
 }
