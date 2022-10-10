@@ -217,14 +217,24 @@ function createImgPlayer(player) {
   const figure = document.createElement('figure');
   figure.setAttribute('id', player.name);
 
+  const playerCountry = document.createElement('img');
+  playerCountry.setAttribute('src', `./imgs/players/flags/${player.country}`);
+
   const figCaption = document.createElement('figCaption');
   figCaption.append(player.name);
-  figCaption.style.textAlign = 'center';
+  figCaption.append(playerCountry);
+  figCaption.style.cssText = `
+    display: flex;
+    aling-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+  `;
 
   const imgPlayer = document.createElement('img');
   imgPlayer.setAttribute('src', `./imgs/players/${player.img}`);
-  imgPlayer.setAttribute('width', '250px');
-  imgPlayer.setAttribute('height', '250px');
+  imgPlayer.setAttribute('width', '200px');
+  imgPlayer.setAttribute('height', '200px');
   imgPlayer.setAttribute('name', player.name);
   imgPlayer.setAttribute('alt', player.name);
   imgPlayer.style.borderRadius = '10%';
