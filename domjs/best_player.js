@@ -146,10 +146,7 @@ const divCounter = document.createElement('div');
 divCounter.className = 'counter';
 const buttonMinus = createButton('button-minus', '-');
 const counter = createCounter('counter');
-counter.style.cssText = `
-  width: 30px;
-  text-align: center;
-`;
+
 const buttonPlus = createButton('button-plus', '+');
 appendChildren(divCounter, [buttonMinus, counter, buttonPlus]);
 
