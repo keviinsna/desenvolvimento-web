@@ -190,7 +190,7 @@ function createCounter(id) {
   counterElement.setAttribute('id', id);
   counterElement.setAttribute('type', 'number');
   counterElement.setAttribute('value', '0');
-  counterElement.readOnly = true;
+  counterElement.disabled = true;
 
   return counterElement;
 }
