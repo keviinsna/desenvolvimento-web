@@ -17,7 +17,7 @@ const teams = [
   {
     name: 'Germany',
     year: [1954, 1974, 1990, 2014],
-    img: 'Germany.png',
+    img: 'germany.png',
     quantity: 4,
   },
   {
