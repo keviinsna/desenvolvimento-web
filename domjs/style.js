@@ -53,7 +53,7 @@ input.style.cssText = `
 // ----------------------
 // Style for divs
 // ----------------------
-const styleDivPlayers = document.getElementById('players');
+const styleDivPlayers = document.getElementById('teams');
 styleDivPlayers.style.cssText = `
   display: flex;
   flex-wrap: wrap;
