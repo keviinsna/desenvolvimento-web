@@ -151,7 +151,7 @@ function createImgTeam(team) {
   figSubCaption.append(team.year.join(', '));
 
   const imgTeam = document.createElement('img');
-  imgTeam.setAttribute('src', `./imgs/flags/${team.img}`);
+  imgTeam.setAttribute('src', `./imgs/${team.img}`);
   imgTeam.setAttribute('width', '200px');
   imgTeam.setAttribute('height', '200px');
   imgTeam.setAttribute('name', team.name);
