@@ -81,7 +81,7 @@ const buttonPlus = createButton('button-plus', '+');
 appendChildren(divCounter, [buttonMinus, counter, buttonPlus]);
 
 const paragraph = document.createElement('p');
-paragraph.append(`Soccer player this quantity of fifa the best trophies:`);
+paragraph.append(`Teams with this quantity of world cup trophy:`);
 appendChildren(divHeader, [h1, divCounter, paragraph]);
 
 document.body.appendChild(divHeader);
