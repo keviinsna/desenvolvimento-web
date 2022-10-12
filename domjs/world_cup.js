@@ -137,10 +137,18 @@ function createImgTeam(team) {
   const figCaption = document.createElement('figCaption');
   figCaption.append(team.name);
   figCaption.style.cssText = `
-        display: flex;
-        aling-items: center;
-        justify-content: center;
-      `;
+    display: flex;
+    aling-items: center;
+    justify-content: center;
+  `;
+
+  const figSubCaption = document.createElement('figcaption');
+  figSubCaption.style.cssText = `
+    display: flex;
+    aling-items: center;
+    justify-content: center;
+  `;
+  figSubCaption.append(team.year.join(', '));
 
   const imgTeam = document.createElement('img');
   imgTeam.setAttribute('src', `./imgs/flags/${team.img}`);
@@ -152,6 +160,7 @@ function createImgTeam(team) {
 
   figure.appendChild(figCaption);
   figure.appendChild(imgTeam);
+  figure.appendChild(figSubCaption);
 
   divTeams.appendChild(figure);
 }
