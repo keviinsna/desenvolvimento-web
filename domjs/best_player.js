@@ -132,12 +132,6 @@ document.head.appendChild(icon);
 // ---------------
 
 const divHeader = document.createElement('header');
-divHeader.style.cssText = `
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center
-`;
 
 const h1 = document.createElement('h1');
 h1.append("The Best FIFA Men's Player");
@@ -158,19 +152,9 @@ document.body.appendChild(divHeader);
 
 const divTrophies = document.body.appendChild(document.createElement('div'));
 divTrophies.setAttribute('id', 'trophies');
-divTrophies.style.cssText = `
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const divPlayers = document.body.appendChild(document.createElement('div'));
 divPlayers.setAttribute('id', 'players');
-divPlayers.style.cssText = `
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-`;
 
 // ---------------
 //   Functions
@@ -188,7 +172,7 @@ function createButton(id, text) {
 function createCounter(id) {
   const counterElement = document.createElement('input');
   counterElement.setAttribute('id', id);
-  counterElement.setAttribute('type', 'number');
+  counterElement.setAttribute('type', 'text');
   counterElement.setAttribute('value', '0');
   counterElement.disabled = true;
 

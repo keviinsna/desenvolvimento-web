@@ -1,4 +1,15 @@
 // -------------------
+// Style for header
+// -------------------
+const styleDivHeader = document.getElementsByTagName('header')[0];
+styleDivHeader.style.cssText = `
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+`;
+
+// -------------------
 // Style for Buttons
 // -------------------
 
@@ -40,5 +51,18 @@ input.style.cssText = `
 `;
 
 // ----------------------
-// Style for FigCaptions
+// Style for divs
 // ----------------------
+const styleDivPlayers = document.getElementById('players');
+styleDivPlayers.style.cssText = `
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
+
+const styleDivTrophies = document.getElementById('trophies');
+styleDivTrophies.style.cssText = `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
