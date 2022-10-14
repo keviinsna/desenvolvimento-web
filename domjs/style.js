@@ -16,8 +16,8 @@ styleDivHeader.style.cssText = `
 const buttons = document.getElementsByTagName('button');
 for (let button of buttons) {
   button.style.cssText = `
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     color: white;
     text-align: center;
     font-size: 20px;
@@ -44,8 +44,8 @@ for (let button of buttons) {
 
 const input = document.getElementById('counter');
 input.style.cssText = `
-    width: 45px;
-    height: 45px;
+    width: 65px;
+    height: 65px;
     border: none;
     text-align: center;
 `;
