@@ -50,6 +50,12 @@ const teams = [
     img: 'spain.png',
     quantity: 1,
   },
+  {
+    name: 'No one has exactly three world cups',
+    year: [],
+    img: '404.png',
+    quantity: 3,
+  },
 ];
 
 // ---------------
