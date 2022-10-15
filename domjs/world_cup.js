@@ -199,6 +199,28 @@ buttonMinus.addEventListener('click', () => {
   }
 });
 
+buttonPlus.addEventListener('mouseenter', (event) => {
+  event.target.style.backgroundColor = 'darkSlateGray';
+  event.target.style.cursor = 'pointer';
+  event.target.style.fontWeight = 'bold';
+});
+
+buttonPlus.addEventListener('mouseleave', (event) => {
+  event.target.style.backgroundColor = 'lightSlateGray';
+  event.target.style.fontWeight = 'normal';
+});
+
+buttonMinus.addEventListener('mouseenter', (event) => {
+  event.target.style.backgroundColor = 'darkRed';
+  event.target.style.cursor = 'pointer';
+  event.target.style.fontWeight = 'bold';
+});
+
+buttonMinus.addEventListener('mouseleave', (event) => {
+  event.target.style.backgroundColor = 'fireBrick';
+  event.target.style.fontWeight = 'normal';
+});
+
 function showTeam(quantityTrophies) {
   const teamsFiltered = teams.filter(
     (team) => team.quantity === quantityTrophies

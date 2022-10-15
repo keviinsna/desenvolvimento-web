@@ -33,7 +33,7 @@ for (let button of buttons) {
     button.style.cssText += `
       border: solid 1px;
       border-radius: 0px 10px 10px 0px;
-      background-color: grey;
+      background-color: lightSlateGray;
     `;
   }
 }
@@ -53,8 +53,8 @@ input.style.cssText = `
 // ----------------------
 // Style for divs
 // ----------------------
-const styleDivPlayers = document.getElementById('teams');
-styleDivPlayers.style.cssText = `
+const styleDivTeams = document.getElementById('teams');
+styleDivTeams.style.cssText = `
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
