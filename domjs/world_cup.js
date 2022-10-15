@@ -50,13 +50,13 @@ const teams = [
     img: 'spain.png',
     quantity: 1,
   },
-  {
-    name: 'No one has exactly three world cups',
-    year: [],
-    img: '404.png',
-    quantity: 3,
-  },
 ];
+
+const noTeam = {
+  name: 'No team has this quantity world cups',
+  year: [],
+  img: '404.png',
+};
 
 // ---------------
 //      Head
@@ -227,14 +227,16 @@ function showTeam(quantityTrophies) {
     (team) => team.quantity === quantityTrophies
   );
 
-  teamsFiltered.map((team) => createImgTeam(team));
+  if (teamsFiltered.length == 0 && quantityTrophies != 0) createImgTeam(noTeam);
+  else teamsFiltered.map((team) => createImgTeam(team));
 }
 
 function hideTeam(quantityTrophies) {
   const teamsFiltered = teams.filter(
     (team) => team.quantity !== quantityTrophies
   );
-
+  if (teamsFiltered.length != 0 && quantityTrophies != 0)
+    removeImg(noTeam.name);
   teamsFiltered.map((team) => removeImg(team.name));
 }
 

@@ -57,7 +57,8 @@ const styleDivTeams = document.getElementById('teams');
 styleDivTeams.style.cssText = `
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
 `;
 
 const styleDivTrophies = document.getElementById('trophies');
