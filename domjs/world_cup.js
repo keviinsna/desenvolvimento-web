@@ -182,14 +182,11 @@ function createImgTeam(team) {
 }
 
 buttonPlus.addEventListener('click', () => {
-  let value = parseInt(document.getElementById('counter').value);
-  if (value < 5) {
-    value = value + 1;
-    counter.setAttribute('value', `${value}`);
-    divTrophies.appendChild(createImgTrophy(value));
-    hideTeam(value);
-    showTeam(value);
-  }
+  let value = parseInt(document.getElementById('counter').value) + 1;
+  counter.setAttribute('value', `${value}`);
+  divTrophies.appendChild(createImgTrophy(value));
+  hideTeam(value);
+  showTeam(value);
 });
 
 buttonMinus.addEventListener('click', () => {

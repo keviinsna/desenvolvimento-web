@@ -63,6 +63,7 @@ styleDivTeams.style.cssText = `
 const styleDivTrophies = document.getElementById('trophies');
 styleDivTrophies.style.cssText = `
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 `;
