@@ -169,8 +169,12 @@ function createImgTeam(team) {
   figure.appendChild(figSubCaption);
 
   if (team.name === 'Brazil') {
-    figure.addEventListener('click', () => {
+    imgTeam.addEventListener('click', () => {
       alert(`${team.name} will be six-time champion in 2022`);
+    });
+
+    imgTeam.addEventListener('mouseenter', (event) => {
+      event.target.style.cursor = 'pointer';
     });
   }
 
@@ -236,6 +240,7 @@ function hideTeam(quantityTrophies) {
 
   teamsFiltered.map((team) => removeImg(team.name));
 }
+
 function appendChildren(parent, children) {
   children.map((child) => parent.appendChild(child));
 }
