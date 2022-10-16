@@ -10,10 +10,6 @@ styleDivHeader.style.cssText = `
 `;
 
 // -------------------
-// Style for main
-// -------------------
-
-// -------------------
 // Style for Buttons
 // -------------------
 

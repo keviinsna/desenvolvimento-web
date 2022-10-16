@@ -95,12 +95,16 @@ appendChildren(divHeader, [h1, paragraph, divCounter]);
 
 document.body.appendChild(divHeader);
 
-const main = document.createElement('main');
+const main = document.body.appendChild(document.createElement('main'));
 
-const sectionTrophies = document.body.appendChild(document.createElement('section'));
+const sectionTrophies = document.body.appendChild(
+  document.createElement('section')
+);
 sectionTrophies.setAttribute('id', 'trophies');
 
-const sectionTeams = document.body.appendChild(document.createElement('div'));
+const sectionTeams = document.body.appendChild(
+  document.createElement('section')
+);
 sectionTeams.setAttribute('id', 'teams');
 
 appendChildren(main, [sectionTrophies, sectionTeams]);
@@ -147,20 +151,16 @@ function createImgTeam(team) {
   const figure = document.createElement('figure');
   figure.setAttribute('id', team.name);
 
-  const figCaption = document.createElement('figCaption');
-  figCaption.append(team.name);
-  figCaption.style.cssText = `
+  figure.style.cssText = `
     display: flex;
-    aling-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   `;
 
+  const figCaption = document.createElement('figCaption');
+  figCaption.append(team.name);
+
   const figSubCaption = document.createElement('figcaption');
-  figSubCaption.style.cssText = `
-    display: flex;
-    aling-items: center;
-    justify-content: center;
-  `;
   figSubCaption.append(team.year.join(', '));
 
   const imgTeam = document.createElement('img');
