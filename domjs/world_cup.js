@@ -79,7 +79,7 @@ const h1 = document.createElement('h1');
 h1.append('FIFA World Cup');
 const paragraph = document.createElement('p');
 paragraph.append(
-  `Increase or decrease de counter to see whichs countries has this quantity of world cups trophy and when they won it.`
+  `Increase or decrease the counter to see which countries has this quantity of world cups trophy and when they won it.`
 );
 paragraph.style.textAlign = 'justify';
 
