@@ -77,6 +77,11 @@ const divHeader = document.createElement('header');
 
 const h1 = document.createElement('h1');
 h1.append('FIFA World Cup');
+const paragraph = document.createElement('p');
+paragraph.append(
+  `Increase or decrease de counter to see whichs countries has this quantity of world cups trophy and when they won it.`
+);
+paragraph.style.textAlign = 'justify';
 
 const divCounter = document.createElement('div');
 divCounter.className = 'counter';
@@ -86,17 +91,19 @@ const counter = createCounter('counter');
 const buttonPlus = createButton('button-plus', '+');
 appendChildren(divCounter, [buttonMinus, counter, buttonPlus]);
 
-const paragraph = document.createElement('p');
-paragraph.append(`Teams with this quantity of world cup trophy:`);
-appendChildren(divHeader, [h1, divCounter, paragraph]);
+appendChildren(divHeader, [h1, paragraph, divCounter]);
 
 document.body.appendChild(divHeader);
 
-const divTrophies = document.body.appendChild(document.createElement('div'));
-divTrophies.setAttribute('id', 'trophies');
+const main = document.createElement('main');
 
-const divTeams = document.body.appendChild(document.createElement('div'));
-divTeams.setAttribute('id', 'teams');
+const sectionTrophies = document.body.appendChild(document.createElement('section'));
+sectionTrophies.setAttribute('id', 'trophies');
+
+const sectionTeams = document.body.appendChild(document.createElement('div'));
+sectionTeams.setAttribute('id', 'teams');
+
+appendChildren(main, [sectionTrophies, sectionTeams]);
 
 // ---------------
 //   Functions
@@ -178,13 +185,13 @@ function createImgTeam(team) {
     });
   }
 
-  divTeams.appendChild(figure);
+  sectionTeams.appendChild(figure);
 }
 
 buttonPlus.addEventListener('click', () => {
   let value = parseInt(document.getElementById('counter').value) + 1;
   counter.setAttribute('value', `${value}`);
-  divTrophies.appendChild(createImgTrophy(value));
+  sectionTrophies.appendChild(createImgTrophy(value));
   hideTeam(value);
   showTeam(value);
 });
