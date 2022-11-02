@@ -1,43 +1,65 @@
-const body = document.body
-const br = document.createElement("br")
-const size = 8
-var empty = '.'
-var black = '1'
-var white = '0'
+const SIZE = 8;
+const EMPTY = '.';
+const BLACK = '1';
+const WHITE = '0';
 
-var board = []
+const PIECES = [EMPTY, BLACK, WHITE];
+const PLAYERS = { BLACK: 'Black', WHITE: 'White' };
 
+const UP = -10;
+const DOWN = 10;
+const LEFT = -1;
+const RIGHT = 1;
+const UP_RIGHT = -9;
+const DOWN_RIGHT = 1;
+const DOWN_LEFT = 9;
+const UP_LEFT = 11;
 
+DIRECTIONS = [UP, DOWN, LEFT, RIGHT, UP_RIGHT, UP_LEFT, DOWN_LEFT, DOWN_RIGHT];
 
-function initial_board(){
-    for (let i =0;i<size;i++){
-        for (let j=0;j<size;j++){
-            board[i*size+j]=empty
-        }
-        
+function squares() {
+    const square = [];
+    let i = 11;
+    while (i <= 88) {
+        if (1 <= i % 10 && i % 10 <= 8) square.push(i++);
+        else i++;
     }
-    //initial positions 
-    board[3*size+3]=black
-    board[3*size+4]=white
-    board[4*size+3]=white
-    board[4*size+4]=black
+    return square;
 }
-var div_board = document.createElement("div")
-function print_board(){
-    for (let i =0;i<size;i++){
-        let p = document.createElement("p")
-        for (let j=0;j<size;j++){
-            p.append(" " + board[i*size+j] + " ")
-            
+
+function initial_board() {
+    const board = [];
+    for (let i = 0; i < SIZE; i++) {
+        for (let j = 0; j < SIZE; j++) {
+            board[i * SIZE + j] = EMPTY;
         }
-        div_board.appendChild(p)
-        div_board.appendChild(br)
-        body.appendChild(div_board)
-        body.appendChild(br)
-      
     }
+    //initial positions
+    board[3 * SIZE + 3] = BLACK;
+    board[3 * SIZE + 4] = WHITE;
+    board[4 * SIZE + 3] = WHITE;
+    board[4 * SIZE + 4] = BLACK;
+
+    return board;
 }
-initial_board()
-print_board()
 
+function print_board(board) {
+    let line = '';
+    for (let i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) line = line.concat(board[i * SIZE + j], ' ');
+        line = line.concat('\n');
+    }
+    console.log(line);
+}
 
+function is_valid(move) {
+    return move.isInteger() && move in squares();
+}
+
+function opponent(player) {
+    return player == BLACK ? WHITE : BLACK;
+}
+
+function find_bracket(square, player, board, direction) {}
+
+print_board(initial_board());
