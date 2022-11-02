@@ -27,6 +27,11 @@ const DIRECTIONS = [
     DOWN_RIGHT,
 ];
 
+const OPTIONS_GAME = {
+    random: random_strategy,
+    human: human_strategy,
+};
+
 function squares() {
     const square = [];
     for (let i = 11; i <= 88; i++) {
@@ -111,14 +116,79 @@ function make_flip(move, player, board, direction) {
     }
 }
 
-print_board(initial_board());
-process.stdin.on('data', (data) => {
-    let board = initial_board();
-    console.log(some_legal_move(BLACK, board));
-    // const move = parseInt(data);
+function next_player(board, prev_player) {
+    const opp = opponent(prev_player);
 
-    // if (is_legal(move, BLACK, board)) board = make_move(move, BLACK, board);
+    if (some_legal_move(opp, board)) return opp;
+    else if (some_legal_move(prev_player, board)) return prev_player;
 
-    // print_board(board);
-    process.exit();
-});
+    return null;
+}
+
+function score(player, board) {
+    let mine = (theirs = 0);
+    const opp = opponent(player);
+
+    for (sq in squares()) {
+        if (board[sq] == opp) theirs++;
+        else if (board[sq] == mine) mine++;
+    }
+
+    return mine - theirs;
+}
+
+function play(black_strategy, white_strategy) {
+    const board = initial_board();
+    let player = BLACK;
+    const strategy = (player) =>
+        player == BLACK ? black_strategy : white_strategy;
+    while (player != null) {
+        const move = get_move(strategy(player), player, board);
+        make_move(move, player, board);
+        player = next_player(board, player);
+    }
+
+    return [board, score(player, board)];
+}
+
+function get_move(strategy, player, board) {
+    const copy_board = JSON.parse(JSON.stringify(board));
+    const move = strategy(player, copy_board);
+    if (!is_legal(move, player, board) || !is_valid(move)) {
+        console.log('MOVIMENTO ILEGAL');
+        return null;
+    }
+    return move;
+}
+
+function random_strategy(player, board) {
+    const moves = legal_moves(player, board);
+    return moves[Math.floor(Math.random() * moves.length)];
+}
+
+function human_strategy(player, board) {
+    return;
+}
+
+function get_strategy(player) {
+    let strategy;
+
+    console.log(`${player}, choose your game strategy: `);
+    console.log(`Options: random and human`);
+
+    // strategy = process.stdin.on('data', (data) => {
+    //     strategy = OPTIONS_GAME[data];
+    //     return strategy;
+    //     process.exit();
+    // });
+
+    return strategy;
+}
+
+function main() {
+    const board = initial_board();
+    const strategy = get_strategy(PLAYERS.BLACK);
+    console.log(strategy(BLACK, board));
+}
+
+main();
