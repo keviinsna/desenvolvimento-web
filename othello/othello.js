@@ -12,9 +12,9 @@ const DOWN = 10;
 const LEFT = -1;
 const RIGHT = 1;
 const UP_RIGHT = -9;
-const DOWN_RIGHT = 1;
+const DOWN_RIGHT = 11;
 const DOWN_LEFT = 9;
-const UP_LEFT = 11;
+const UP_LEFT = -11;
 
 const DIRECTIONS = [
     UP,
@@ -27,10 +27,8 @@ const DIRECTIONS = [
     DOWN_RIGHT,
 ];
 
-const OPTIONS_GAME = {
-    random: random_strategy,
-    human: human_strategy,
-};
+let player = BLACK;
+let board = initial_board();
 
 function squares() {
     const square = [];
@@ -49,22 +47,31 @@ function initial_board() {
     for (let i of squares()) board[i] = EMPTY;
 
     //initial positions
-    board[45] = board[54] = BLACK;
-    board[44] = board[55] = WHITE;
+    board[45] = board[54] = WHITE;
+    board[44] = board[55] = BLACK;
 
     return board;
 }
 
 function print_board(board) {
-    for (let i = 0; i < SIZE; i++) {
-        let line = '';
-        for (let j = 0; j < SIZE; j++) line = line.concat(board[i * SIZE + j]);
-        console.log(line);
+    for (let sq of squares()) {
+        const house = document.getElementById(sq.toString());
+        if (house.hasChildNodes()) house.removeChild(house.lastChild);
+        if (board[sq] == BLACK) {
+            const black_piece = document.createElement('span');
+            black_piece.setAttribute('class', 'piece black-piece');
+            house.appendChild(black_piece);
+        } else if (board[sq] == WHITE) {
+            const white_piece = document.createElement('span');
+            white_piece.setAttribute('class', 'piece white-piece');
+            house.appendChild(white_piece);
+        }
     }
 }
 
 function is_valid(move) {
-    return move.isInteger() && move in squares();
+    const inSquares = squares().some((sq) => sq == move);
+    return Number.isInteger(move) && inSquares;
 }
 
 function opponent(player) {
@@ -137,58 +144,42 @@ function score(player, board) {
     return mine - theirs;
 }
 
-function play(black_strategy, white_strategy) {
-    const board = initial_board();
-    let player = BLACK;
-    const strategy = (player) =>
-        player == BLACK ? black_strategy : white_strategy;
-    while (player != null) {
-        const move = get_move(strategy(player), player, board);
+function suggest_moves(player, board) {
+    const moves = legal_moves(player, board);
+    for (let move of moves) {
+        const house = document.getElementById(move.toString());
+        const suggested_house = document.createElement('span');
+        suggested_house.setAttribute('class', 'piece');
+        house.appendChild(suggested_house);
+    }
+}
+
+function handleClickSquare(event) {
+    const move = parseInt(event.currentTarget.id);
+    if (is_legal(move, player, board) && is_valid(move)) {
         make_move(move, player, board);
         player = next_player(board, player);
+        print_board(board);
+        suggest_moves(player, board);
+
+        if (player == null) alert('FIM');
     }
-
-    return [board, score(player, board)];
 }
 
-function get_move(strategy, player, board) {
-    const copy_board = JSON.parse(JSON.stringify(board));
-    const move = strategy(player, copy_board);
-    if (!is_legal(move, player, board) || !is_valid(move)) {
-        console.log('MOVIMENTO ILEGAL');
-        return null;
+function play() {
+    print_board(board);
+    suggest_moves(player, board);
+    for (let sq of squares()) {
+        const house = document.getElementById(sq.toString());
+
+        house.addEventListener('click', handleClickSquare);
+
+        const i = Math.floor(sq / 10);
+        const j = sq % 10;
+
+        if (i % 2 == 0)
+            house.style.backgroundColor = j % 2 != 0 ? 'green' : 'lightgreen';
+        else house.style.backgroundColor = j % 2 != 0 ? 'lightgreen' : 'green';
     }
-    return move;
 }
-
-function random_strategy(player, board) {
-    const moves = legal_moves(player, board);
-    return moves[Math.floor(Math.random() * moves.length)];
-}
-
-function human_strategy(player, board) {
-    return;
-}
-
-function get_strategy(player) {
-    let strategy;
-
-    console.log(`${player}, choose your game strategy: `);
-    console.log(`Options: random and human`);
-
-    // strategy = process.stdin.on('data', (data) => {
-    //     strategy = OPTIONS_GAME[data];
-    //     return strategy;
-    //     process.exit();
-    // });
-
-    return strategy;
-}
-
-function main() {
-    const board = initial_board();
-    const strategy = get_strategy(PLAYERS.BLACK);
-    console.log(strategy(BLACK, board));
-}
-
-main();
+play();
