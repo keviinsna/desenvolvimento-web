@@ -7,9 +7,20 @@
         <link href="style.css" rel="stylesheet" />
     </head>
     <body>
-        <h1>Othello - Reversi</h1>
-        <h5>Created by Ellen Almeida and Kevin Sena</h5>
-        <div id="board">
+        <h2>Othello - Reversi</h2>
+        <div id="div_score">
+            <p id="score_black"></p>
+            <p id="score_white"></p>
+
+        </div>
+        <div id="game">
+        
+            <div id="black_turn">
+                <div id="black_circle" class="circle"></div>
+                <p> BLACK'S TURN</p>
+            </div>
+            
+            <div id="board">
             <table>
                 <tr class="row">
                     <td id="11" class="square"></td>
@@ -92,6 +103,15 @@
                     <td id="88" class="square"></td>
                 </tr>
             </table>
+            </div>
+        
+            <div id="white_turn">
+                <div id="white_circle" class="circle"></div>
+                <p> WHITE'S TURN</p>
+            </div>
+            
         </div>
+        
+        <h5>Created by Ellen Almeida and Kevin Sena</h5>
     </body>
 </html>

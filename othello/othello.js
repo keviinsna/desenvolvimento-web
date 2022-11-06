@@ -132,16 +132,18 @@ function next_player(board, prev_player) {
     return null;
 }
 
-function score(player, board) {
+function score(board) {
+    let player=BLACK;
     let mine = (theirs = 0);
     const opp = opponent(player);
 
-    for (sq in squares()) {
+    for (sq of squares()) {
         if (board[sq] == opp) theirs++;
-        else if (board[sq] == mine) mine++;
+        else if (board[sq] == player) {
+            mine++;
+        }
     }
-
-    return mine - theirs;
+    return [mine,theirs];
 }
 
 function suggest_moves(player, board) {
@@ -154,6 +156,16 @@ function suggest_moves(player, board) {
     }
 }
 
+
+var text_score_black = document.getElementById("score_black");
+var text_score_white = document.getElementById("score_white");
+var score_white;
+var score_black;
+
+var black_turn =document.getElementById("black_turn");
+var white_turn =document.getElementById("white_turn");
+white_turn.style.visibility="hidden";
+
 function handleClickSquare(event) {
     const move = parseInt(event.currentTarget.id);
     if (is_legal(move, player, board) && is_valid(move)) {
@@ -162,7 +174,33 @@ function handleClickSquare(event) {
         print_board(board);
         suggest_moves(player, board);
 
-        if (player == null) alert('FIM');
+        [score_black,score_white] = score(board);
+
+        text_score_black.textContent= `Score Black: ${score_black}`;
+        text_score_white.textContent= `Score White: ${score_white}`;
+      
+        
+        if (player == null) {
+            white_turn.style.visibility="hidden";
+            black_turn.style.visibility="hidden";
+            if(score_white==32)
+                alert(" IT'S A TIE")
+            else if(score_black<score_white)
+                alert('White WINS!');
+            else
+                alert('Black WINS!');
+        }
+        
+        if(player == BLACK) {
+            white_turn.style.visibility="hidden";
+            black_turn.style.visibility="visible";
+        }
+        else{
+            black_turn.style.visibility="hidden";
+            white_turn.style.visibility="visible";
+        } 
+
+        
     }
 }
 

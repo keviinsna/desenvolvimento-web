@@ -1,12 +1,20 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+html {
+  font-family: "Roboto", sans-serif;
+} */
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #DEB808;
 }
-
+h2{
+    margin: 0%;
+}
 #board {
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid black;
     border-radius: 1rem;
 }
@@ -18,16 +26,16 @@ table {
 
 .square {
     display: inline-block;
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
     border: 1px solid black;
     padding: 5px;
 }
 
 .piece {
     display: inline-block;
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
@@ -40,4 +48,36 @@ table {
 .black-piece {
     border: 5px solid black;
     background-color: #303030;
+}
+
+#div_score{
+    display: flex;
+    justify-content: space-between;
+    width: 30em;
+}
+#div_score p{
+    padding: 5px;
+}
+
+#game{
+    display: flex;
+    justify-content: space-between;
+    width: 65em;
+    align-items: center;
+}
+.circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+#black_circle{
+    background-color: black;
+}
+#white_circle{
+    background-color: white;
+}
+#black_turn, #white_turn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
