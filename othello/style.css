@@ -24,9 +24,11 @@ table {
 }
 
 .square {
-    /* display: inline-flex; */
-    height: 40px;
-    width: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
     border: 1px solid black;
     padding: 5px;
 }
