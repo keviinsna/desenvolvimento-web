@@ -55,10 +55,6 @@ table {
     width: 30em;
 }
 
-#div_score p {
-    padding: 5px;
-}
-
 #game {
     display: flex;
     justify-content: space-between;
