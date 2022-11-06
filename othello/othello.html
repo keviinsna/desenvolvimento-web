@@ -7,111 +7,108 @@
         <link href="style.css" rel="stylesheet" />
     </head>
     <body>
-        <h2>Othello - Reversi</h2>
+        <h2 style="margin: 0">Othello - Reversi</h2>
         <div id="div_score">
             <p id="score_black"></p>
             <p id="score_white"></p>
-
         </div>
         <div id="game">
-        
             <div id="black_turn">
-                <div id="black_circle" class="circle"></div>
-                <p> BLACK'S TURN</p>
+                <span id="black_circle" class="piece black-piece"></span>
+                <p>BLACK'S TURN</p>
             </div>
-            
+
             <div id="board">
-            <table>
-                <tr class="row">
-                    <td id="11" class="square"></td>
-                    <td id="12" class="square"></td>
-                    <td id="13" class="square"></td>
-                    <td id="14" class="square"></td>
-                    <td id="15" class="square"></td>
-                    <td id="16" class="square"></td>
-                    <td id="17" class="square"></td>
-                    <td id="18" class="square"></td>
-                </tr>
-                <tr class="row">
-                    <td id="21" class="square"></td>
-                    <td id="22" class="square"></td>
-                    <td id="23" class="square"></td>
-                    <td id="24" class="square"></td>
-                    <td id="25" class="square"></td>
-                    <td id="26" class="square"></td>
-                    <td id="27" class="square"></td>
-                    <td id="28" class="square"></td>
-                </tr>
-                <tr class="row">
-                    <td id="31" class="square"></td>
-                    <td id="32" class="square"></td>
-                    <td id="33" class="square"></td>
-                    <td id="34" class="square"></td>
-                    <td id="35" class="square"></td>
-                    <td id="36" class="square"></td>
-                    <td id="37" class="square"></td>
-                    <td id="38" class="square"></td>
-                </tr>
-                <tr class="row">
-                    <td id="41" class="square"></td>
-                    <td id="42" class="square"></td>
-                    <td id="43" class="square"></td>
-                    <td id="44" class="square"></td>
-                    <td id="45" class="square"></td>
-                    <td id="46" class="square"></td>
-                    <td id="47" class="square"></td>
-                    <td id="48" class="square"></td>
-                </tr>
-                <tr class="row">
-                    <td id="51" class="square"></td>
-                    <td id="52" class="square"></td>
-                    <td id="53" class="square"></td>
-                    <td id="54" class="square"></td>
-                    <td id="55" class="square"></td>
-                    <td id="56" class="square"></td>
-                    <td id="57" class="square"></td>
-                    <td id="58" class="square"></td>
-                </tr>
-                <tr class="row">
-                    <td id="61" class="square"></td>
-                    <td id="62" class="square"></td>
-                    <td id="63" class="square"></td>
-                    <td id="64" class="square"></td>
-                    <td id="65" class="square"></td>
-                    <td id="66" class="square"></td>
-                    <td id="67" class="square"></td>
-                    <td id="68" class="square"></td>
-                </tr>
-                <tr class="row">
-                    <td id="71" class="square"></td>
-                    <td id="72" class="square"></td>
-                    <td id="73" class="square"></td>
-                    <td id="74" class="square"></td>
-                    <td id="75" class="square"></td>
-                    <td id="76" class="square"></td>
-                    <td id="77" class="square"></td>
-                    <td id="78" class="square"></td>
-                </tr>
-                <tr class="row">
-                    <td id="81" class="square"></td>
-                    <td id="82" class="square"></td>
-                    <td id="83" class="square"></td>
-                    <td id="84" class="square"></td>
-                    <td id="85" class="square"></td>
-                    <td id="86" class="square"></td>
-                    <td id="87" class="square"></td>
-                    <td id="88" class="square"></td>
-                </tr>
-            </table>
+                <table>
+                    <tr class="row">
+                        <td id="11" class="square"></td>
+                        <td id="12" class="square"></td>
+                        <td id="13" class="square"></td>
+                        <td id="14" class="square"></td>
+                        <td id="15" class="square"></td>
+                        <td id="16" class="square"></td>
+                        <td id="17" class="square"></td>
+                        <td id="18" class="square"></td>
+                    </tr>
+                    <tr class="row">
+                        <td id="21" class="square"></td>
+                        <td id="22" class="square"></td>
+                        <td id="23" class="square"></td>
+                        <td id="24" class="square"></td>
+                        <td id="25" class="square"></td>
+                        <td id="26" class="square"></td>
+                        <td id="27" class="square"></td>
+                        <td id="28" class="square"></td>
+                    </tr>
+                    <tr class="row">
+                        <td id="31" class="square"></td>
+                        <td id="32" class="square"></td>
+                        <td id="33" class="square"></td>
+                        <td id="34" class="square"></td>
+                        <td id="35" class="square"></td>
+                        <td id="36" class="square"></td>
+                        <td id="37" class="square"></td>
+                        <td id="38" class="square"></td>
+                    </tr>
+                    <tr class="row">
+                        <td id="41" class="square"></td>
+                        <td id="42" class="square"></td>
+                        <td id="43" class="square"></td>
+                        <td id="44" class="square"></td>
+                        <td id="45" class="square"></td>
+                        <td id="46" class="square"></td>
+                        <td id="47" class="square"></td>
+                        <td id="48" class="square"></td>
+                    </tr>
+                    <tr class="row">
+                        <td id="51" class="square"></td>
+                        <td id="52" class="square"></td>
+                        <td id="53" class="square"></td>
+                        <td id="54" class="square"></td>
+                        <td id="55" class="square"></td>
+                        <td id="56" class="square"></td>
+                        <td id="57" class="square"></td>
+                        <td id="58" class="square"></td>
+                    </tr>
+                    <tr class="row">
+                        <td id="61" class="square"></td>
+                        <td id="62" class="square"></td>
+                        <td id="63" class="square"></td>
+                        <td id="64" class="square"></td>
+                        <td id="65" class="square"></td>
+                        <td id="66" class="square"></td>
+                        <td id="67" class="square"></td>
+                        <td id="68" class="square"></td>
+                    </tr>
+                    <tr class="row">
+                        <td id="71" class="square"></td>
+                        <td id="72" class="square"></td>
+                        <td id="73" class="square"></td>
+                        <td id="74" class="square"></td>
+                        <td id="75" class="square"></td>
+                        <td id="76" class="square"></td>
+                        <td id="77" class="square"></td>
+                        <td id="78" class="square"></td>
+                    </tr>
+                    <tr class="row">
+                        <td id="81" class="square"></td>
+                        <td id="82" class="square"></td>
+                        <td id="83" class="square"></td>
+                        <td id="84" class="square"></td>
+                        <td id="85" class="square"></td>
+                        <td id="86" class="square"></td>
+                        <td id="87" class="square"></td>
+                        <td id="88" class="square"></td>
+                    </tr>
+                </table>
             </div>
-        
+
             <div id="white_turn">
-                <div id="white_circle" class="circle"></div>
-                <p> WHITE'S TURN</p>
+                <span id="white_circle" class="piece white-piece"></span>
+                <p>WHITE'S TURN</p>
             </div>
-            
         </div>
-        
+
         <h5>Created by Ellen Almeida and Kevin Sena</h5>
     </body>
 </html>

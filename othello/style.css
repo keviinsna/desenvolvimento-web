@@ -1,17 +1,16 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 html {
-  font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
 } */
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #DEB808;
+    background-color: #deb808;
 }
-h2{
-    margin: 0%;
-}
+
 #board {
     height: 100%;
     padding: 10px;
@@ -25,7 +24,7 @@ table {
 }
 
 .square {
-    display: inline-block;
+    /* display: inline-flex; */
     height: 40px;
     width: 40px;
     border: 1px solid black;
@@ -50,33 +49,25 @@ table {
     background-color: #303030;
 }
 
-#div_score{
+#div_score {
     display: flex;
     justify-content: space-between;
     width: 30em;
 }
-#div_score p{
+
+#div_score p {
     padding: 5px;
 }
 
-#game{
+#game {
     display: flex;
     justify-content: space-between;
     width: 65em;
     align-items: center;
 }
-.circle{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-#black_circle{
-    background-color: black;
-}
-#white_circle{
-    background-color: white;
-}
-#black_turn, #white_turn{
+
+#black_turn,
+#white_turn {
     display: flex;
     flex-direction: column;
     align-items: center;
