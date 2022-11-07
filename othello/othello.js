@@ -31,6 +31,7 @@ let player = BLACK;
 let board = initial_board();
 let score_white = 2;
 let score_black = 2;
+let mode_game;
 
 const black_turn = document.getElementById('black_turn');
 const white_turn = document.getElementById('white_turn');
@@ -163,7 +164,57 @@ function suggest_moves(player, board) {
     }
 }
 
-function handleClickSquare(event) {
+function cpu(player, board) {
+    const moves = legal_moves(player, board);
+    const move = moves[Math.floor(Math.random() * moves.length)];
+    make_move(move, player, board);
+    print_board(board);
+    end_game(player);
+}
+
+function end_game(prev_player) {
+    const player = next_player(board, prev_player);
+
+    const [score_black, score_white] = score(board);
+
+    text_score_black.textContent = `Score Black: ${score_black}`;
+    text_score_white.textContent = `Score White: ${score_white}`;
+
+    if (player == BLACK) {
+        suggest_moves(player, board);
+        white_turn.style.visibility = 'hidden';
+        black_turn.style.visibility = 'visible';
+    } else if (player == WHITE) {
+        black_turn.style.visibility = 'hidden';
+        white_turn.style.visibility = 'visible';
+    } else {
+        white_turn.style.visibility = 'hidden';
+        black_turn.style.visibility = 'hidden';
+
+        if (score_white == score_black) alert(" IT'S A TIE");
+        else if (score_black < score_white) alert('White WINS!');
+        else alert('Black WINS!');
+    }
+}
+
+function single_handle_click_square(event) {
+    const move = parseInt(event.currentTarget.id);
+    if (is_legal(move, player, board) && is_valid(move)) {
+        const opp = opponent(player);
+        make_move(move, player, board);
+        end_game(player);
+        print_board(board);
+
+        player = next_player(board, player);
+
+        if (player == opp) {
+            setTimeout(cpu, 2000, player, board);
+            player = next_player(board, player);
+        }
+    }
+}
+
+function multi_handle_click_square(event) {
     const move = parseInt(event.currentTarget.id);
     if (is_legal(move, player, board) && is_valid(move)) {
         make_move(move, player, board);
@@ -171,36 +222,36 @@ function handleClickSquare(event) {
         print_board(board);
         suggest_moves(player, board);
 
-        [score_black, score_white] = score(board);
-
-        text_score_black.textContent = `Score Black: ${score_black}`;
-        text_score_white.textContent = `Score White: ${score_white}`;
-
-        if (player == null) {
-            white_turn.style.visibility = 'hidden';
-            black_turn.style.visibility = 'hidden';
-            if (score_white == score_black) alert(" IT'S A TIE");
-            else if (score_black < score_white) alert('White WINS!');
-            else alert('Black WINS!');
-        }
-
-        if (player == BLACK) {
-            white_turn.style.visibility = 'hidden';
-            black_turn.style.visibility = 'visible';
-        } else {
-            black_turn.style.visibility = 'hidden';
-            white_turn.style.visibility = 'visible';
-        }
+        end_game(player);
     }
 }
 
-function play() {
+function single_play() {
     print_board(board);
     suggest_moves(player, board);
     for (let sq of squares()) {
         const house = document.getElementById(sq.toString());
 
-        house.addEventListener('click', handleClickSquare);
+        house.addEventListener('click', single_handle_click_square);
+    }
+}
+function multi_play() {
+    print_board(board);
+    suggest_moves(player, board);
+    for (let sq of squares()) {
+        const house = document.getElementById(sq.toString());
+
+        house.addEventListener('click', multi_handle_click_square);
+    }
+}
+
+function init() {
+    const single_player = document.getElementById('single-player');
+    const multi_player = document.getElementById('multi-player');
+    const modal = document.getElementById('modal');
+
+    for (let sq of squares()) {
+        const house = document.getElementById(sq.toString());
 
         const i = Math.floor(sq / 10);
         const j = sq % 10;
@@ -209,8 +260,25 @@ function play() {
             house.style.backgroundColor = j % 2 != 0 ? 'green' : 'lightgreen';
         else house.style.backgroundColor = j % 2 != 0 ? 'lightgreen' : 'green';
     }
+
     white_turn.style.visibility = 'hidden';
+    black_turn.style.visibility = 'hidden';
     text_score_black.textContent = `Score Black: ${score_black}`;
     text_score_white.textContent = `Score White: ${score_white}`;
+
+    single_player.addEventListener('click', (event) => {
+        mode_game = event.target.value;
+        modal.style.display = 'none';
+        black_turn.style.visibility = 'visible';
+        single_play();
+    });
+
+    multi_player.addEventListener('click', (event) => {
+        mode_game = event.target.value;
+        modal.style.display = 'none';
+        black_turn.style.visibility = 'visible';
+        multi_play();
+    });
 }
-play();
+
+init();
