@@ -164,38 +164,42 @@ function suggest_moves(player, board) {
     }
 }
 
-function cpu(player, board) {
-    const moves = legal_moves(player, board);
-    const move = moves[Math.floor(Math.random() * moves.length)];
-    make_move(move, player, board);
-    print_board(board);
-    end_game(player);
-    if (next_player(board, player) == BLACK)
-        suggest_moves(opponent(player), board);
-}
-
-function end_game(prev_player) {
+function end_game(prev_player, mode) {
     const player = next_player(board, prev_player);
-
     const [score_black, score_white] = score(board);
 
     text_score_black.textContent = `Score Black: ${score_black}`;
     text_score_white.textContent = `Score White: ${score_white}`;
 
-    if (player == BLACK) {
+    if (mode == 1) {
+        prev_player = player;
+    }
+
+    if (prev_player == BLACK) {
         white_turn.style.visibility = 'hidden';
         black_turn.style.visibility = 'visible';
-    } else if (player == WHITE) {
+    } else if (prev_player == WHITE) {
         black_turn.style.visibility = 'hidden';
         white_turn.style.visibility = 'visible';
     } else {
         white_turn.style.visibility = 'hidden';
         black_turn.style.visibility = 'hidden';
 
-        if (score_white == score_black) alert(" IT'S A TIE");
-        else if (score_black < score_white) alert('White WINS!');
-        else alert('Black WINS!');
+        if (score_white == score_black) setTimeout(alert, 500, "IT'S A TIE");
+        else if (score_black < score_white)
+            setTimeout(alert, 500, 'White WINS!');
+        else setTimeout(alert, 500, 'Black WINS!');
     }
+}
+
+function cpu(player, board) {
+    const moves = legal_moves(player, board);
+    const move = moves[Math.floor(Math.random() * moves.length)];
+    make_move(move, player, board);
+    print_board(board);
+    end_game(player, 1);
+    if (next_player(board, player) == BLACK)
+        suggest_moves(opponent(player), board);
 }
 
 function single_handle_click_square(event) {
@@ -203,7 +207,7 @@ function single_handle_click_square(event) {
     if (is_legal(move, player, board) && is_valid(move)) {
         const opp = opponent(player);
         make_move(move, player, board);
-        end_game(player);
+        end_game(player, 1);
         print_board(board);
 
         player = next_player(board, player);
@@ -211,6 +215,8 @@ function single_handle_click_square(event) {
         if (player == opp) {
             setTimeout(cpu, 2000, player, board);
             player = next_player(board, player);
+        } else {
+            suggest_moves(player, board);
         }
     }
 }
@@ -223,7 +229,7 @@ function multi_handle_click_square(event) {
         print_board(board);
         suggest_moves(player, board);
 
-        end_game(player);
+        end_game(player, 0);
     }
 }
 
