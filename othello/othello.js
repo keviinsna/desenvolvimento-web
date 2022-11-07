@@ -170,6 +170,8 @@ function cpu(player, board) {
     make_move(move, player, board);
     print_board(board);
     end_game(player);
+    if (next_player(board, player) == BLACK)
+        suggest_moves(opponent(player), board);
 }
 
 function end_game(prev_player) {
@@ -181,7 +183,6 @@ function end_game(prev_player) {
     text_score_white.textContent = `Score White: ${score_white}`;
 
     if (player == BLACK) {
-        suggest_moves(player, board);
         white_turn.style.visibility = 'hidden';
         black_turn.style.visibility = 'visible';
     } else if (player == WHITE) {
