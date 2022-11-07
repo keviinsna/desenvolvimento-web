@@ -233,22 +233,13 @@ function multi_handle_click_square(event) {
     }
 }
 
-function single_play() {
+function play(mode_game) {
     print_board(board);
     suggest_moves(player, board);
     for (let sq of squares()) {
         const house = document.getElementById(sq.toString());
 
-        house.addEventListener('click', single_handle_click_square);
-    }
-}
-function multi_play() {
-    print_board(board);
-    suggest_moves(player, board);
-    for (let sq of squares()) {
-        const house = document.getElementById(sq.toString());
-
-        house.addEventListener('click', multi_handle_click_square);
+        house.addEventListener('click', mode_game);
     }
 }
 
@@ -277,14 +268,14 @@ function init() {
         mode_game = event.target.value;
         modal.style.display = 'none';
         black_turn.style.visibility = 'visible';
-        single_play();
+        play(single_handle_click_square);
     });
 
     multi_player.addEventListener('click', (event) => {
         mode_game = event.target.value;
         modal.style.display = 'none';
         black_turn.style.visibility = 'visible';
-        multi_play();
+        play(multi_handle_click_square);
     });
 }
 
