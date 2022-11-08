@@ -192,29 +192,27 @@ function end_game(prev_player, mode) {
     }
 }
 
-function cpu(player, board) {
-    const moves = legal_moves(player, board);
+function cpu(cpu, board) {
+    const moves = legal_moves(cpu, board);
     const move = moves[Math.floor(Math.random() * moves.length)];
-    make_move(move, player, board);
+    make_move(move, cpu, board);
     print_board(board);
-    end_game(player, 1);
-    if (next_player(board, player) == BLACK)
-        suggest_moves(opponent(player), board);
+    end_game(cpu, 1);
+    player = next_player(board, player);
+    if (player == BLACK) suggest_moves(player, board);
 }
 
 function single_handle_click_square(event) {
     const move = parseInt(event.currentTarget.id);
-    if (is_legal(move, player, board) && is_valid(move)) {
+    if (is_legal(move, player, board) && is_valid(move) && player == BLACK) {
         const opp = opponent(player);
         make_move(move, player, board);
         end_game(player, 1);
         print_board(board);
 
         player = next_player(board, player);
-
         if (player == opp) {
             setTimeout(cpu, 2000, player, board);
-            player = next_player(board, player);
         } else {
             suggest_moves(player, board);
         }
