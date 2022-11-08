@@ -9,6 +9,8 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: #deb808;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #board {
@@ -74,13 +76,11 @@ table {
 .white-piece {
     background-color: white;
     border: 5px solid #dbdada;
-    /* animation: flip-white-piece 2s; */
 }
 
 .black-piece {
     border: 5px solid black;
     background-color: #303030;
-    /* animation: flip-black-piece 2s; */
 }
 
 #div_score {
@@ -109,7 +109,7 @@ table {
     right: 0;
     bottom: 0;
     width: 300px;
-    height: 300px;
+    height: 250px;
     z-index: 9999;
     margin: auto;
     display: block;
@@ -117,6 +117,8 @@ table {
     border-radius: 15px;
     background-color: #fff;
     box-sizing: border-box;
+    overflow-y: hidden;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 #modal-container {
@@ -124,4 +126,33 @@ table {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#modal-container header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #303030;
+}
+
+#modal-container main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button {
+    padding: 10px;
+    background-color: lightgreen;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+button:hover {
+    cursor: pointer;
+    background-color: green;
+    color: white;
 }
